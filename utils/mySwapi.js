@@ -1,24 +1,11 @@
 const swapi = require('swapi-node');
-
-function getPlanetsFromFilm(filmId)
-{
-    return new Promise((resolve, reject) => {
-        getPlanetsUrls(filmId).then(urls => {
-            const planetsId = getPlanetsId(urls);
-            resolve(getAllPlanetsData(planetsId));
-        },
-        error => {
-            reject(error);
-        });
-    });
-}
-
-//If any of the request fails it will return an error 
+ 
 function getAllPlanetsData(planetsId)
 {
     const planetsDataPromises = planetsId.map(id => {
         return getPlanetData(id);
     });
+    //If any of the promise fails it will return an error
     return Promise.all(planetsDataPromises).then(
         result => {
             return result;
@@ -82,4 +69,17 @@ function getErrorMessage(type, id)
     }
 }
 
-module.exports = { getPlanetsFromFilm, getPlanetsUrls };
+module.exports = { 
+    getPlanetsFromFilm(filmId)
+    {
+        return new Promise((resolve, reject) => {
+            getPlanetsUrls(filmId).then(urls => {
+                const planetsId = getPlanetsId(urls);
+                resolve(getAllPlanetsData(planetsId));
+            },
+            error => {
+                reject(error);
+            });
+        });
+    }
+ };

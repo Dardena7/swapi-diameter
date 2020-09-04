@@ -1,6 +1,6 @@
 const yargs = require('yargs');
-const mySwapi = require('./mySwapi');
-const myCalculator = require('./myCalculator');
+const mySwapi = require('./utils/mySwapi');
+const myCalculator = require('./utils/myCalculator');
 
 const filmId = yargs.argv._[0] || yargs.argv.n;
 
