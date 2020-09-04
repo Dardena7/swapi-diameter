@@ -1,0 +1,16 @@
+{
+  "name": "swapi-diameter",
+  "version": "0.0.1",
+  "description": "Get the total diameter of all planets with at least 1 mountain and 1 water surface by movie",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexis Dardenne",
+  "license": "ISC",
+  "dependencies": {
+    "node": "^14.8.0",
+    "swapi-node": "^0.6.0",
+    "yargs": "^15.4.1"
+  }
+}
