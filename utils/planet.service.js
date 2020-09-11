@@ -36,25 +36,32 @@ function getPlanetsId(urls)
 function getPlanetsUrls(filmId)
 {
     return new Promise((resolve, reject) => {
-        if (!filmId)
-            reject(`No film number was provided. Please type "node index.js <film number>".`);
+        if (filmId === undefined) {
+            reject(new Error(`No film number was provided. Please type "node index.js <film number>".`));
+        }
+        if (filmId === 0) {
+            reject(new Error(getErrorMessage("filmRequest",filmId)));
+        }
+
         swapi.getFilm(filmId).then(result => {
             resolve(result.planets);
         },
         error => {
-            reject(handleErrors(error,"filmRequest",filmId));
+            reject(new Error(handleErrors(error,"filmRequest",filmId)));
         });
     });
 }
 
 function handleErrors(error, type, id = "")
 {
-    if (+error.message >= 500)
+    const errorCode = parseInt(error.message);
+    if (errorCode >= 500) {
         return "A problem occured with SWAPI server. Please retry later.";
-    else if (+error.message == 404)
+    }
+    if (errorCode == 404) {
         return getErrorMessage(type, id);
-    else
-        return "An unknown error occured.";
+    }
+    return "An unknown error occured.";
 }
 
 function getErrorMessage(type, id)

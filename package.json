@@ -4,7 +4,7 @@
   "description": "Get the total diameter of all planets with at least 1 mountain and 1 water surface by movie",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Alexis Dardenne",
   "license": "ISC",
@@ -12,5 +12,8 @@
     "node": "^14.8.0",
     "swapi-node": "^0.6.0",
     "yargs": "^15.4.1"
+  },
+  "devDependencies": {
+    "mocha": "^8.1.3"
   }
 }
