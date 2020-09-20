@@ -4,8 +4,6 @@ const calculatorService = require('./utils/calculator.service');
 
 const filmId = yargs.argv._[0] || yargs.argv.n;
 
-console.log(filmId);
-
 planetService.getPlanetsFromFilm(filmId).then(planets => {
     console.log(calculatorService.getTotalDiameterWithMountainsAndWater(planets));
 },

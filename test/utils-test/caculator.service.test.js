@@ -1,10 +1,9 @@
-const assert = require('assert');
 const calculatorService = require('../../utils/calculator.service');
 const planetService = require('../../utils/planet.service');
 
-module.exports = function () {
-    describe('utils/calculator.service', function() {
-        describe('getTotalDiameterWithMountainsAndWater', function() {
+//module.exports = function () {
+    describe('utils/calculator.service', () => {
+        describe('getTotalDiameterWithMountainsAndWater', () => {
 
             const planets = [
                 {
@@ -32,17 +31,15 @@ module.exports = function () {
                 }
             ];
 
-            it('Empty array should return 0', function () {
-                assert.equal(
-                    calculatorService.getTotalDiameterWithMountainsAndWater([]),
-                     0);
+            test('Empty array should return 0', () => {
+                const diameter = calculatorService.getTotalDiameterWithMountainsAndWater([]);
+                expect(diameter).toBe(0);
             });
 
-            it('Planets should return 20000', function () {
-                assert.equal(
-                    calculatorService.getTotalDiameterWithMountainsAndWater(planets),
-                     20000);
+            test('Planets should return 20000', () => {
+                const diameter = calculatorService.getTotalDiameterWithMountainsAndWater(planets);
+                expect(diameter).toBe(20000);
             });
         });
     });
-}
+//}

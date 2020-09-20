@@ -36,11 +36,11 @@ function getPlanetsId(urls)
 function getPlanetsUrls(filmId)
 {
     return new Promise((resolve, reject) => {
-        if (filmId === undefined) {
+        if (!filmId) {
+            if (filmId === 0) {
+                reject(new Error(getErrorMessage("filmRequest",filmId)));
+            }
             reject(new Error(`No film number was provided. Please type "node index.js <film number>".`));
-        }
-        if (filmId === 0) {
-            reject(new Error(getErrorMessage("filmRequest",filmId)));
         }
 
         swapi.getFilm(filmId).then(result => {
@@ -54,7 +54,7 @@ function getPlanetsUrls(filmId)
 
 function handleErrors(error, type, id = "")
 {
-    const errorCode = parseInt(error.message);
+    const errorCode = parseInt(error.message, 10);
     if (errorCode >= 500) {
         return "A problem occured with SWAPI server. Please retry later.";
     }
